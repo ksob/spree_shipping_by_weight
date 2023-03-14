@@ -35,7 +35,7 @@ module Spree
       def order_total(package)
         order = package.order
         return total(package.contents) unless order
-        order.item_total + order.promo_total + order.savings_plan_total
+        order.item_total + order.promo_total
       end
     end
   end
