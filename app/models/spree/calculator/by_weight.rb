@@ -16,9 +16,9 @@ module Spree
     end
     
     def rates
-      rates_config = preferred_rate_config.split(',').map { |s|
-        d = s.split(':').map(&:to_f)
-        [d[0], d[1] * (1 + preferred_tax_rate.to_f)]
+      rates_config = JSON.load preferred_rate_config.gsub('=>', ':')
+      rates_config.each_pair.map { |k,v|
+        [k.to_f, v.to_f * (1 + preferred_tax_rate.to_f)]
       }
     end
 
